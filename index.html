@@ -1,0 +1,1320 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kebun Binatang Lembang - Destinasi Wisata Edukasi</title>
+  <meta name="description" content="Kebun Binatang Lembang - Destinasi wisata keluarga dengan koleksi satwa lengkap di ketinggian Lembang yang sejuk">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .dark .glass-effect {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .scroll-animate.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .parallax-bg {
+      transition: transform 0.3s ease-out;
+    }
+    
+    .ticket-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .ticket-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .chatbot-bubble {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .testimonial-card {
+      min-height: 200px;
+    }
+    
+    #chatbot-window {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    .animal-filter-btn {
+      transition: all 0.3s;
+    }
+    
+    .animal-filter-btn.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .stats-counter {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full w-full overflow-auto bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  <div class="w-full h-full"><!-- Header/Navbar -->
+   <nav id="navbar" class="fixed top-0 w-full z-50 glass-effect transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between items-center h-16">
+      <div class="flex items-center space-x-3">
+       <div class="text-3xl">
+        🦁
+       </div><span id="site-title" class="text-xl font-bold text-gray-800 dark:text-white">Kebun Binatang Lembang</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-8"><a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Home</a> <a href="#animals" class="nav-link text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Satwa</a> <a href="#tickets" class="nav-link text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Tiket</a> <a href="#facilities" class="nav-link text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Fasilitas</a> <a href="#blog" class="nav-link text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Blog</a> <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Kontak</a>
+      </div>
+      <div class="flex items-center space-x-4"><button id="lang-toggle" class="px-3 py-1 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition"> <span id="current-lang">🇮🇩 ID</span> </button> <button id="dark-mode-toggle" class="p-2 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"> <i class="fas fa-moon dark:hidden"></i> <i class="fas fa-sun hidden dark:inline"></i> </button> <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-white"> <i class="fas fa-bars"></i> </button>
+      </div>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+     <div class="px-4 py-4 space-y-3"><a href="#home" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Home</a> <a href="#animals" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Satwa</a> <a href="#tickets" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Tiket</a> <a href="#facilities" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Fasilitas</a> <a href="#blog" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Blog</a> <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Kontak</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="relative h-screen w-full hero-gradient flex items-center justify-center overflow-hidden">
+    <div class="parallax-bg absolute inset-0 opacity-20">
+     <div class="absolute top-10 left-10 text-9xl">
+      🦒
+     </div>
+     <div class="absolute bottom-20 right-20 text-9xl">
+      🐘
+     </div>
+     <div class="absolute top-40 right-40 text-7xl">
+      🦓
+     </div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+     <h1 id="hero-title" class="text-5xl md:text-7xl font-bold text-white mb-6 scroll-animate">Selamat Datang di Kebun Binatang Lembang</h1>
+     <p id="hero-subtitle" class="text-xl md:text-2xl text-white mb-8 scroll-animate">Jelajahi Keajaiban Satwa di Ketinggian Lembang</p><button id="cta-button" class="px-8 py-4 bg-white text-purple-600 rounded-full font-semibold text-lg hover:bg-gray-100 transition transform hover:scale-105 scroll-animate"> Beli Tiket Sekarang </button> <!-- Weather Widget -->
+     <div class="mt-12 inline-block glass-effect px-6 py-3 rounded-full text-white"><i class="fas fa-cloud-sun mr-2"></i> <span id="weather-info">Lembang: 18°C - Cerah</span>
+     </div>
+    </div>
+    <div class="absolute bottom-10 left-0 right-0 text-center"><a href="#stats" class="text-white text-3xl animate-bounce inline-block"> <i class="fas fa-chevron-down"></i> </a>
+    </div>
+   </section><!-- Stats Counter Section -->
+   <section id="stats" class="py-16 bg-white dark:bg-gray-800 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="scroll-animate">
+       <div class="stats-counter text-purple-600 dark:text-purple-400" data-target="250">
+        0
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mt-2">Spesies Satwa</p>
+      </div>
+      <div class="scroll-animate">
+       <div class="stats-counter text-purple-600 dark:text-purple-400" data-target="500000">
+        0
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mt-2">Pengunjung/Tahun</p>
+      </div>
+      <div class="scroll-animate">
+       <div class="stats-counter text-purple-600 dark:text-purple-400" data-target="15">
+        0
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mt-2">Hektar Area</p>
+      </div>
+      <div class="scroll-animate">
+       <div class="stats-counter text-purple-600 dark:text-purple-400" data-target="4.8">
+        0
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mt-2">Rating Pengunjung</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Search & Filter Section -->
+   <section class="py-8 bg-gray-100 dark:bg-gray-900 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div class="w-full md:w-96">
+       <div class="relative"><input type="text" id="search-input" placeholder="Cari satwa, fasilitas, atau artikel..." class="w-full px-4 py-3 pl-12 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"> <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
+       </div>
+      </div>
+      <div class="flex flex-wrap gap-2"><button class="animal-filter-btn active px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white" data-filter="all">Semua</button> <button class="animal-filter-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white" data-filter="mamalia">Mamalia</button> <button class="animal-filter-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white" data-filter="reptil">Reptil</button> <button class="animal-filter-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white" data-filter="aves">Aves</button>
+      </div>
+     </div>
+    </div>
+   </section><!-- Animals Gallery Section -->
+   <section id="animals" class="py-20 bg-white dark:bg-gray-800 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12 scroll-animate">Koleksi Satwa Kami</h2>
+     <div id="animals-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Animal Cards -->
+      <div class="animal-card scroll-animate bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-category="mamalia">
+       <div class="h-64 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-9xl">
+        🦁
+       </div>
+       <div class="p-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Singa Afrika</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Raja hutan dari Afrika dengan auman megahnya</p><button class="text-purple-600 dark:text-purple-400 hover:underline" onclick="openVirtualTour('lion')"> <i class="fas fa-street-view mr-2"></i>Virtual Tour 360° </button>
+       </div>
+      </div>
+      <div class="animal-card scroll-animate bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-category="mamalia">
+       <div class="h-64 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-9xl">
+        🐘
+       </div>
+       <div class="p-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Gajah Sumatera</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Gajah endemik Indonesia yang dilindungi</p><button class="text-purple-600 dark:text-purple-400 hover:underline" onclick="openVirtualTour('elephant')"> <i class="fas fa-street-view mr-2"></i>Virtual Tour 360° </button>
+       </div>
+      </div>
+      <div class="animal-card scroll-animate bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-category="mamalia">
+       <div class="h-64 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-9xl">
+        🦒
+       </div>
+       <div class="p-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Jerapah</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Hewan tertinggi di dunia dengan leher panjang</p><button class="text-purple-600 dark:text-purple-400 hover:underline" onclick="openVirtualTour('giraffe')"> <i class="fas fa-street-view mr-2"></i>Virtual Tour 360° </button>
+       </div>
+      </div>
+      <div class="animal-card scroll-animate bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-category="reptil">
+       <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-9xl">
+        🐊
+       </div>
+       <div class="p-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Buaya Muara</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Predator air terbesar di Indonesia</p><button class="text-purple-600 dark:text-purple-400 hover:underline" onclick="openVirtualTour('crocodile')"> <i class="fas fa-street-view mr-2"></i>Virtual Tour 360° </button>
+       </div>
+      </div>
+      <div class="animal-card scroll-animate bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-category="aves">
+       <div class="h-64 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-9xl">
+        🦜
+       </div>
+       <div class="p-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Macaw</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Burung beo warna-warni dari Amerika</p><button class="text-purple-600 dark:text-purple-400 hover:underline" onclick="openVirtualTour('macaw')"> <i class="fas fa-street-view mr-2"></i>Virtual Tour 360° </button>
+       </div>
+      </div>
+      <div class="animal-card scroll-animate bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition" data-category="mamalia">
+       <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-9xl">
+        🦓
+       </div>
+       <div class="p-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Zebra</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Kuda belang khas Afrika</p><button class="text-purple-600 dark:text-purple-400 hover:underline" onclick="openVirtualTour('zebra')"> <i class="fas fa-street-view mr-2"></i>Virtual Tour 360° </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Tickets & Schedule Section -->
+   <section id="tickets" class="py-20 bg-gray-100 dark:bg-gray-900 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-4 scroll-animate">Tiket &amp; Jadwal Kunjungan</h2>
+     <p class="text-center text-gray-600 dark:text-gray-400 mb-12">Buka Setiap Hari: 08:00 - 17:00 WIB</p>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div class="ticket-card scroll-animate bg-white dark:bg-gray-800 rounded-2xl p-8 text-center shadow-lg">
+       <div class="text-5xl mb-4">
+        👨
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Dewasa</h3>
+       <p class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-4">Rp 50.000</p>
+       <ul class="text-left text-gray-600 dark:text-gray-300 mb-6 space-y-2">
+        <li><i class="fas fa-check text-green-500 mr-2"></i>Akses semua area</li>
+        <li><i class="fas fa-check text-green-500 mr-2"></i>Free parking</li>
+        <li><i class="fas fa-check text-green-500 mr-2"></i>Animal feeding</li>
+       </ul><button onclick="openReservationForm('adult')" class="w-full py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"> Pesan Sekarang </button>
+      </div>
+      <div class="ticket-card scroll-animate bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl p-8 text-center shadow-lg transform scale-105">
+       <div class="text-5xl mb-4">
+        👨‍👩‍👧‍👦
+       </div>
+       <h3 class="text-2xl font-bold text-white mb-2">Keluarga</h3>
+       <p class="text-4xl font-bold text-white mb-4">Rp 150.000</p>
+       <ul class="text-left text-white mb-6 space-y-2">
+        <li><i class="fas fa-check mr-2"></i>4 orang (2 dewasa + 2 anak)</li>
+        <li><i class="fas fa-check mr-2"></i>Gratis foto keluarga</li>
+        <li><i class="fas fa-check mr-2"></i>Souvenir eksklusif</li>
+        <li><i class="fas fa-check mr-2"></i>Priority entrance</li>
+       </ul><button onclick="openReservationForm('family')" class="w-full py-3 bg-white text-purple-600 rounded-full hover:bg-gray-100 transition font-semibold"> Pesan Sekarang </button>
+      </div>
+      <div class="ticket-card scroll-animate bg-white dark:bg-gray-800 rounded-2xl p-8 text-center shadow-lg">
+       <div class="text-5xl mb-4">
+        👶
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Anak-anak</h3>
+       <p class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-4">Rp 30.000</p>
+       <ul class="text-left text-gray-600 dark:text-gray-300 mb-6 space-y-2">
+        <li><i class="fas fa-check text-green-500 mr-2"></i>Usia 3-12 tahun</li>
+        <li><i class="fas fa-check text-green-500 mr-2"></i>Mini zoo tour</li>
+        <li><i class="fas fa-check text-green-500 mr-2"></i>Stiker gratis</li>
+       </ul><button onclick="openReservationForm('child')" class="w-full py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"> Pesan Sekarang </button>
+      </div>
+     </div>
+    </div>
+   </section><!-- Facilities Section -->
+   <section id="facilities" class="py-20 bg-white dark:bg-gray-800 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12 scroll-animate">Fasilitas &amp; Layanan</h2>
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🍔
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Restoran</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🅿️
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Parkir Luas</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🚻
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Toilet Bersih</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🎁
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Souvenir Shop</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🏥
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Klinik</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        📸
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Photo Spot</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🎪
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">Playground</h3>
+      </div>
+      <div class="text-center scroll-animate">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center text-3xl">
+        🛜
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white">WiFi Gratis</h3>
+      </div>
+     </div>
+    </div>
+   </section><!-- Events Section -->
+   <section class="py-20 bg-gray-100 dark:bg-gray-900 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12 scroll-animate">Event &amp; Kegiatan</h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="scroll-animate bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+       <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-6xl">
+        🎉
+       </div>
+       <div class="p-6"><span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 rounded-full text-sm">Event Mendatang</span>
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mt-4 mb-2">Animal Feeding Time</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Setiap Sabtu &amp; Minggu, 10:00 &amp; 15:00 WIB</p>
+        <p class="text-gray-600 dark:text-gray-300">Kesempatan langka memberi makan satwa favorit Anda dengan didampingi keeper profesional.</p>
+       </div>
+      </div>
+      <div class="scroll-animate bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+       <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-6xl">
+        🎓
+       </div>
+       <div class="p-6"><span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 rounded-full text-sm">Program Edukasi</span>
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mt-4 mb-2">Zoo School Program</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Senin - Jumat, booking required</p>
+        <p class="text-gray-600 dark:text-gray-300">Program edukasi khusus untuk sekolah dengan materi konservasi dan kehidupan satwa.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials Carousel -->
+   <section class="py-20 bg-white dark:bg-gray-800 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12 scroll-animate">Testimoni Pengunjung</h2>
+     <div class="relative">
+      <div id="testimonials-container" class="overflow-hidden">
+       <div id="testimonials-track" class="flex transition-transform duration-500"><!-- Testimonials will be dynamically loaded here -->
+       </div>
+      </div><button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white dark:bg-gray-700 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition"> <i class="fas fa-chevron-left text-gray-800 dark:text-white"></i> </button> <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white dark:bg-gray-700 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition"> <i class="fas fa-chevron-right text-gray-800 dark:text-white"></i> </button>
+     </div>
+     <div class="mt-8 text-center"><button onclick="openRatingForm()" class="px-8 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"> Tulis Testimoni Anda </button>
+     </div>
+    </div>
+   </section><!-- Blog Section -->
+   <section id="blog" class="py-20 bg-gray-100 dark:bg-gray-900 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12 scroll-animate">Blog &amp; Artikel Wisata</h2>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <article class="scroll-animate bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+       <div class="h-48 bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-6xl">
+        📰
+       </div>
+       <div class="p-6"><span class="text-sm text-gray-500 dark:text-gray-400">15 Desember 2024</span>
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white mt-2 mb-3">Tips Berkunjung ke Kebun Binatang Bersama Anak</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Panduan lengkap untuk kunjungan keluarga yang menyenangkan dan edukatif...</p><a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">Baca Selengkapnya →</a>
+       </div>
+      </article>
+      <article class="scroll-animate bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+       <div class="h-48 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-6xl">
+        🌿
+       </div>
+       <div class="p-6"><span class="text-sm text-gray-500 dark:text-gray-400">12 Desember 2024</span>
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white mt-2 mb-3">Program Konservasi Satwa Langka</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Upaya kami dalam melestarikan satwa-satwa terancam punah...</p><a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">Baca Selengkapnya →</a>
+       </div>
+      </article>
+      <article class="scroll-animate bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+       <div class="h-48 bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-6xl">
+        📷
+       </div>
+       <div class="p-6"><span class="text-sm text-gray-500 dark:text-gray-400">8 Desember 2024</span>
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white mt-2 mb-3">Spot Foto Terbaik di Zoo Lembang</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Rekomendasi tempat-tempat instagramable untuk foto memorable...</p><a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">Baca Selengkapnya →</a>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section><!-- Map Section -->
+   <section class="py-20 bg-white dark:bg-gray-800 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12 scroll-animate">Lokasi Kami</h2>
+     <div class="scroll-animate bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg h-96 flex items-center justify-center">
+      <div class="text-center">
+       <div class="text-6xl mb-4">
+        📍
+       </div>
+       <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Kebun Binatang Lembang</h3>
+       <p class="text-gray-600 dark:text-gray-300">Jl. Raya Lembang No. 123, Lembang, Bandung Barat</p>
+       <p class="text-gray-600 dark:text-gray-300 mb-4">Jawa Barat, Indonesia 40391</p>
+       <div class="flex gap-4 justify-center mt-6"><a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"> <i class="fas fa-map-marker-alt mr-2"></i>Buka di Google Maps </a> <a href="https://waze.com" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"> <i class="fas fa-navigation mr-2"></i>Buka di Waze </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Form -->
+   <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-900 w-full">
+    <div class="max-w-4xl mx-auto px-4">
+     <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-4 scroll-animate">Hubungi Kami</h2>
+     <p class="text-center text-gray-600 dark:text-gray-400 mb-12">Ada pertanyaan? Kirim pesan kepada kami</p>
+     <form id="contact-form" class="scroll-animate bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+      <div class="mb-6"><label for="contact-name" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Nama Lengkap</label> <input type="text" id="contact-name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Masukkan nama Anda">
+      </div>
+      <div class="mb-6"><label for="contact-email" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email</label> <input type="email" id="contact-email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="email@example.com">
+      </div>
+      <div class="mb-6"><label for="contact-message" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Pesan</label> <textarea id="contact-message" rows="5" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Tulis pesan Anda di sini..."></textarea>
+      </div><button type="submit" id="contact-submit-btn" class="w-full py-4 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed"> <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan </button>
+      <div id="contact-success" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg"><i class="fas fa-check-circle mr-2"></i>Pesan berhasil dikirim! Kami akan segera menghubungi Anda.
+      </div>
+     </form>
+     <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div class="scroll-animate">
+       <div class="text-4xl mb-3">
+        📞
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Telepon</h3>
+       <p class="text-gray-600 dark:text-gray-300">+62 22 2789 1234</p>
+      </div>
+      <div class="scroll-animate">
+       <div class="text-4xl mb-3">
+        📧
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Email</h3>
+       <p class="text-gray-600 dark:text-gray-300">info@zoolembang.com</p>
+      </div>
+      <div class="scroll-animate">
+       <div class="text-4xl mb-3">
+        💬
+       </div>
+       <h3 class="font-semibold text-gray-800 dark:text-white mb-2">WhatsApp</h3>
+       <p class="text-gray-600 dark:text-gray-300">+62 812 3456 7890</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-gray-800 dark:bg-gray-950 text-white py-12 w-full">
+    <div class="max-w-7xl mx-auto px-4">
+     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+       <div class="flex items-center space-x-2 mb-4">
+        <div class="text-3xl">
+         🦁
+        </div><span class="text-xl font-bold">Zoo Lembang</span>
+       </div>
+       <p class="text-gray-400">Destinasi wisata keluarga terbaik di Lembang dengan koleksi satwa terlengkap.</p>
+      </div>
+      <div>
+       <h3 class="font-bold mb-4">Link Cepat</h3>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+        <li><a href="#animals" class="hover:text-white transition">Satwa</a></li>
+        <li><a href="#tickets" class="hover:text-white transition">Tiket</a></li>
+        <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
+       </ul>
+      </div>
+      <div>
+       <h3 class="font-bold mb-4">Informasi</h3>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition">Tentang Kami</a></li>
+        <li><a href="#" class="hover:text-white transition">Kebijakan Privasi</a></li>
+        <li><a href="#" class="hover:text-white transition">Syarat &amp; Ketentuan</a></li>
+        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+       </ul>
+      </div>
+      <div>
+       <h3 class="font-bold mb-4">Ikuti Kami</h3>
+       <div class="flex space-x-4"><a href="#" class="w-10 h-10 bg-gray-700 hover:bg-purple-600 rounded-full flex items-center justify-center transition"> <i class="fab fa-facebook-f"></i> </a> <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-purple-600 rounded-full flex items-center justify-center transition"> <i class="fab fa-instagram"></i> </a> <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-purple-600 rounded-full flex items-center justify-center transition"> <i class="fab fa-twitter"></i> </a> <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-purple-600 rounded-full flex items-center justify-center transition"> <i class="fab fa-youtube"></i> </a>
+       </div>
+       <div class="mt-6">
+        <h4 class="font-semibold mb-2">Bagikan Halaman</h4>
+        <div class="flex space-x-2"><button onclick="shareToSocial('facebook')" class="px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded transition text-sm"> <i class="fab fa-facebook-f"></i> </button> <button onclick="shareToSocial('twitter')" class="px-3 py-2 bg-sky-500 hover:bg-sky-600 rounded transition text-sm"> <i class="fab fa-twitter"></i> </button> <button onclick="shareToSocial('whatsapp')" class="px-3 py-2 bg-green-600 hover:bg-green-700 rounded transition text-sm"> <i class="fab fa-whatsapp"></i> </button>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+      <p id="footer-text">© 2024 Kebun Binatang Lembang. All rights reserved.</p>
+     </div>
+    </div>
+   </footer><!-- Chatbot Button --> <button id="chatbot-toggle" class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full shadow-2xl flex items-center justify-center text-white text-2xl chatbot-bubble hover:scale-110 transition z-40"> 💬 </button> <!-- Chatbot Window -->
+   <div id="chatbot-window" class="fixed bottom-24 right-6 w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hidden z-40 overflow-hidden">
+    <div class="bg-gradient-to-r from-purple-600 to-purple-800 p-4 flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div class="text-2xl">
+       🤖
+      </div>
+      <div>
+       <h3 class="font-bold text-white">Zoo Assistant</h3>
+       <p class="text-xs text-purple-200">Online</p>
+      </div>
+     </div><button id="chatbot-close" class="text-white hover:bg-purple-700 rounded-full w-8 h-8 flex items-center justify-center"> <i class="fas fa-times"></i> </button>
+    </div>
+    <div id="chatbot-messages" class="h-96 overflow-y-auto p-4 space-y-3 bg-gray-50 dark:bg-gray-900">
+     <div class="flex items-start space-x-2">
+      <div class="text-2xl">
+       🤖
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none p-3 shadow">
+       <p class="text-gray-800 dark:text-white text-sm">Halo! Selamat datang di Kebun Binatang Lembang. Ada yang bisa saya bantu?</p>
+      </div>
+     </div>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+     <div class="flex space-x-2"><input type="text" id="chatbot-input" placeholder="Ketik pesan..." class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"> <button id="chatbot-send" class="w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-full flex items-center justify-center text-white transition"> <i class="fas fa-paper-plane"></i> </button>
+     </div>
+     <div class="mt-3 flex flex-wrap gap-2"><button onclick="quickChatReply('Jam buka?')" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-xs text-gray-800 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900 transition"> Jam buka? </button> <button onclick="quickChatReply('Harga tiket?')" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-xs text-gray-800 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900 transition"> Harga tiket? </button> <button onclick="quickChatReply('Lokasi?')" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-xs text-gray-800 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900 transition"> Lokasi? </button>
+     </div>
+    </div>
+   </div><!-- Modal: Virtual Tour -->
+   <div id="virtual-tour-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full p-8 relative"><button onclick="closeModal('virtual-tour-modal')" class="absolute top-4 right-4 w-10 h-10 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full flex items-center justify-center transition"> <i class="fas fa-times text-gray-800 dark:text-white"></i> </button>
+     <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Virtual Tour 360°</h2>
+     <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl h-96 flex items-center justify-center text-white text-6xl">
+      <div class="text-center">
+       <div class="mb-4">
+        🔄
+       </div>
+       <p class="text-xl">Virtual Tour Interaktif</p>
+       <p class="text-sm mt-2 opacity-75">Jelajahi habitat satwa dengan teknologi 360°</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- Modal: Reservation Form -->
+   <div id="reservation-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full p-8 relative"><button onclick="closeModal('reservation-modal')" class="absolute top-4 right-4 w-10 h-10 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full flex items-center justify-center transition"> <i class="fas fa-times text-gray-800 dark:text-white"></i> </button>
+     <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Form Pemesanan Tiket</h2>
+     <form id="reservation-form">
+      <div class="mb-4"><label for="res-ticket-type" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Jenis Tiket</label> <select id="res-ticket-type" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"> <option value="">Pilih jenis tiket</option> <option value="adult">Dewasa - Rp 50.000</option> <option value="child">Anak-anak - Rp 30.000</option> <option value="family">Keluarga - Rp 150.000</option> </select>
+      </div>
+      <div class="mb-4"><label for="res-name" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Nama Lengkap</label> <input type="text" id="res-name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Masukkan nama">
+      </div>
+      <div class="mb-4"><label for="res-email" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email</label> <input type="email" id="res-email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="email@example.com">
+      </div>
+      <div class="mb-4"><label for="res-date" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Tanggal Kunjungan</label> <input type="date" id="res-date" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+      </div>
+      <div class="mb-6"><label for="res-quantity" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Jumlah Tiket</label> <input type="number" id="res-quantity" required min="1" value="1" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+      </div><button type="submit" id="res-submit-btn" class="w-full py-4 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed"> <i class="fas fa-ticket-alt mr-2"></i>Pesan Tiket </button>
+      <div id="res-success" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg"><i class="fas fa-check-circle mr-2"></i>Pemesanan berhasil! Kami akan mengirim konfirmasi ke email Anda.
+      </div>
+     </form>
+    </div>
+   </div><!-- Modal: Rating Form -->
+   <div id="rating-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full p-8 relative"><button onclick="closeModal('rating-modal')" class="absolute top-4 right-4 w-10 h-10 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full flex items-center justify-center transition"> <i class="fas fa-times text-gray-800 dark:text-white"></i> </button>
+     <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Tulis Testimoni</h2>
+     <form id="rating-form">
+      <div class="mb-4"><label for="rating-name" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Nama Anda</label> <input type="text" id="rating-name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Masukkan nama">
+      </div>
+      <div class="mb-4"><label for="rating-email" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email</label> <input type="email" id="rating-email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="email@example.com">
+      </div>
+      <div class="mb-4"><label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Rating</label>
+       <div class="flex space-x-2"><button type="button" class="rating-star text-4xl text-gray-300 hover:text-yellow-400 transition" data-rating="1">★</button> <button type="button" class="rating-star text-4xl text-gray-300 hover:text-yellow-400 transition" data-rating="2">★</button> <button type="button" class="rating-star text-4xl text-gray-300 hover:text-yellow-400 transition" data-rating="3">★</button> <button type="button" class="rating-star text-4xl text-gray-300 hover:text-yellow-400 transition" data-rating="4">★</button> <button type="button" class="rating-star text-4xl text-gray-300 hover:text-yellow-400 transition" data-rating="5">★</button>
+       </div><input type="hidden" id="rating-value" required>
+      </div>
+      <div class="mb-6"><label for="rating-message" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Testimoni</label> <textarea id="rating-message" rows="4" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Ceritakan pengalaman Anda..."></textarea>
+      </div><button type="submit" id="rating-submit-btn" class="w-full py-4 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed"> <i class="fas fa-star mr-2"></i>Kirim Testimoni </button>
+      <div id="rating-success" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg"><i class="fas fa-check-circle mr-2"></i>Terima kasih atas testimoni Anda!
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_title: 'Kebun Binatang Lembang',
+      hero_title: 'Selamat Datang di Kebun Binatang Lembang',
+      hero_subtitle: 'Jelajahi Keajaiban Satwa di Ketinggian Lembang',
+      cta_button: 'Beli Tiket Sekarang',
+      footer_text: '© 2024 Kebun Binatang Lembang. All rights reserved.',
+      background_color: '#f9fafb',
+      surface_color: '#ffffff',
+      text_color: '#1f2937',
+      primary_action_color: '#7c3aed',
+      secondary_action_color: '#6b21a8',
+      font_family: 'Poppins',
+      font_size: 16
+    };
+
+    let currentLang = 'id';
+    let currentTestimonialIndex = 0;
+    let allTestimonials = [];
+    let testimonialInterval;
+
+    const translations = {
+      id: {
+        home: 'Home',
+        animals: 'Satwa',
+        tickets: 'Tiket',
+        facilities: 'Fasilitas',
+        blog: 'Blog',
+        contact: 'Kontak',
+        welcomeTitle: 'Selamat Datang di Kebun Binatang Lembang',
+        welcomeSubtitle: 'Jelajahi Keajaiban Satwa di Ketinggian Lembang',
+        buyTicket: 'Beli Tiket Sekarang'
+      },
+      en: {
+        home: 'Home',
+        animals: 'Animals',
+        tickets: 'Tickets',
+        facilities: 'Facilities',
+        blog: 'Blog',
+        contact: 'Contact',
+        welcomeTitle: 'Welcome to Lembang Zoo',
+        welcomeSubtitle: 'Explore Wildlife Wonders in Lembang Heights',
+        buyTicket: 'Buy Tickets Now'
+      }
+    };
+
+    const dataHandler = {
+      onDataChanged(data) {
+        allTestimonials = data.filter(item => item.type === 'testimonial');
+        renderTestimonials();
+      }
+    };
+
+    async function init() {
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error('Failed to initialize data SDK');
+        }
+      }
+
+      if (window.elementSdk) {
+        await window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (config) => {
+            const siteTitle = document.getElementById('site-title');
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            const ctaButton = document.getElementById('cta-button');
+            const footerText = document.getElementById('footer-text');
+            
+            if (siteTitle) siteTitle.textContent = config.site_title || defaultConfig.site_title;
+            if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+            if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            if (ctaButton) ctaButton.textContent = config.cta_button || defaultConfig.cta_button;
+            if (footerText) footerText.textContent = config.footer_text || defaultConfig.footer_text;
+
+            const bgColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+            document.body.style.backgroundColor = bgColor;
+            
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+              if (index % 2 === 0) {
+                section.style.backgroundColor = surfaceColor;
+              } else {
+                section.style.backgroundColor = bgColor;
+              }
+            });
+
+            document.querySelectorAll('.text-gray-800:not(.dark *)').forEach(el => {
+              el.style.color = textColor;
+            });
+
+            document.querySelectorAll('.bg-purple-600').forEach(el => {
+              el.style.backgroundColor = primaryColor;
+            });
+
+            document.querySelectorAll('.text-purple-600:not(.dark *)').forEach(el => {
+              el.style.color = primaryColor;
+            });
+
+            document.querySelectorAll('.hover\\:bg-purple-700').forEach(el => {
+              el.addEventListener('mouseenter', () => el.style.backgroundColor = secondaryColor);
+              el.addEventListener('mouseleave', () => el.style.backgroundColor = primaryColor);
+            });
+
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseSize = config.font_size || defaultConfig.font_size;
+
+            document.body.style.fontFamily = `${customFont}, Poppins, sans-serif`;
+            document.body.style.fontSize = `${baseSize}px`;
+
+            document.querySelectorAll('h1').forEach(el => el.style.fontSize = `${baseSize * 2.5}px`);
+            document.querySelectorAll('h2').forEach(el => el.style.fontSize = `${baseSize * 2}px`);
+            document.querySelectorAll('h3').forEach(el => el.style.fontSize = `${baseSize * 1.5}px`);
+            document.querySelectorAll('p, a, button, input, textarea, select').forEach(el => {
+              if (!el.classList.contains('stats-counter')) {
+                el.style.fontSize = `${baseSize}px`;
+              }
+            });
+          },
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  config.background_color = value;
+                  if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  config.surface_color = value;
+                  if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value });
+                }
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  config.text_color = value;
+                  if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => {
+                  config.primary_action_color = value;
+                  if (window.elementSdk) window.elementSdk.setConfig({ primary_action_color: value });
+                }
+              },
+              {
+                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => {
+                  config.secondary_action_color = value;
+                  if (window.elementSdk) window.elementSdk.setConfig({ secondary_action_color: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => config.font_family || defaultConfig.font_family,
+              set: (value) => {
+                config.font_family = value;
+                if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
+              }
+            },
+            fontSizeable: {
+              get: () => config.font_size || defaultConfig.font_size,
+              set: (value) => {
+                config.font_size = value;
+                if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
+              }
+            }
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ['site_title', config.site_title || defaultConfig.site_title],
+            ['hero_title', config.hero_title || defaultConfig.hero_title],
+            ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+            ['cta_button', config.cta_button || defaultConfig.cta_button],
+            ['footer_text', config.footer_text || defaultConfig.footer_text]
+          ])
+        });
+      }
+
+      setupEventListeners();
+      startScrollAnimations();
+      startParallax();
+      animateCounters();
+      startTestimonialCarousel();
+    }
+
+    function setupEventListeners() {
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+      }
+
+      const langToggle = document.getElementById('lang-toggle');
+      if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+      }
+
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (mobileMenu) {
+            mobileMenu.classList.toggle('hidden');
+          }
+        });
+      }
+
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', handleContactForm);
+      }
+
+      const reservationForm = document.getElementById('reservation-form');
+      if (reservationForm) {
+        reservationForm.addEventListener('submit', handleReservationForm);
+      }
+
+      const ratingForm = document.getElementById('rating-form');
+      if (ratingForm) {
+        ratingForm.addEventListener('submit', handleRatingForm);
+      }
+
+      const chatbotToggle = document.getElementById('chatbot-toggle');
+      if (chatbotToggle) {
+        chatbotToggle.addEventListener('click', () => {
+          const chatbotWindow = document.getElementById('chatbot-window');
+          if (chatbotWindow) {
+            chatbotWindow.classList.toggle('hidden');
+          }
+        });
+      }
+
+      const chatbotClose = document.getElementById('chatbot-close');
+      if (chatbotClose) {
+        chatbotClose.addEventListener('click', () => {
+          const chatbotWindow = document.getElementById('chatbot-window');
+          if (chatbotWindow) {
+            chatbotWindow.classList.add('hidden');
+          }
+        });
+      }
+
+      const chatbotSend = document.getElementById('chatbot-send');
+      const chatbotInput = document.getElementById('chatbot-input');
+      if (chatbotSend && chatbotInput) {
+        chatbotSend.addEventListener('click', sendChatMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') sendChatMessage();
+        });
+      }
+
+      const filterButtons = document.querySelectorAll('.animal-filter-btn');
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          filterAnimals(btn.dataset.filter);
+        });
+      });
+
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          searchContent(query);
+        });
+      }
+
+      const ratingStars = document.querySelectorAll('.rating-star');
+      ratingStars.forEach(star => {
+        star.addEventListener('click', (e) => {
+          e.preventDefault();
+          const rating = parseInt(star.dataset.rating);
+          document.getElementById('rating-value').value = rating;
+          ratingStars.forEach((s, idx) => {
+            if (idx < rating) {
+              s.classList.add('text-yellow-400');
+              s.classList.remove('text-gray-300');
+            } else {
+              s.classList.remove('text-yellow-400');
+              s.classList.add('text-gray-300');
+            }
+          });
+        });
+      });
+
+      const prevBtn = document.getElementById('prev-testimonial');
+      const nextBtn = document.getElementById('next-testimonial');
+      if (prevBtn) prevBtn.addEventListener('click', () => changeTestimonial(-1));
+      if (nextBtn) nextBtn.addEventListener('click', () => changeTestimonial(1));
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
+
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'id' ? 'en' : 'id';
+      const langToggle = document.getElementById('current-lang');
+      if (langToggle) {
+        langToggle.textContent = currentLang === 'id' ? '🇮🇩 ID' : '🇬🇧 EN';
+      }
+
+      const navLinks = document.querySelectorAll('.nav-link');
+      const linkKeys = ['home', 'animals', 'tickets', 'facilities', 'blog', 'contact'];
+      navLinks.forEach((link, idx) => {
+        if (translations[currentLang][linkKeys[idx]]) {
+          link.textContent = translations[currentLang][linkKeys[idx]];
+        }
+      });
+    }
+
+    function startScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    function startParallax() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxBg = document.querySelector('.parallax-bg');
+        if (parallaxBg) {
+          parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+    }
+
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stats-counter');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.dataset.target);
+            animateCounter(entry.target, target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => observer.observe(counter));
+    }
+
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 100;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, 20);
+    }
+
+    async function handleContactForm(e) {
+      e.preventDefault();
+      
+      if (!window.dataSdk) return;
+      
+      const submitBtn = document.getElementById('contact-submit-btn');
+      const successMsg = document.getElementById('contact-success');
+      
+      if (submitBtn) submitBtn.disabled = true;
+      
+      const formData = {
+        id: Date.now().toString(),
+        type: 'contact',
+        name: document.getElementById('contact-name').value,
+        email: document.getElementById('contact-email').value,
+        message: document.getElementById('contact-message').value,
+        timestamp: new Date().toISOString()
+      };
+      
+      const result = await window.dataSdk.create(formData);
+      
+      if (result.isOk) {
+        if (successMsg) {
+          successMsg.classList.remove('hidden');
+          setTimeout(() => successMsg.classList.add('hidden'), 5000);
+        }
+        e.target.reset();
+      } else {
+        showToast('Gagal mengirim pesan. Silakan coba lagi.');
+      }
+      
+      if (submitBtn) submitBtn.disabled = false;
+    }
+
+    async function handleReservationForm(e) {
+      e.preventDefault();
+      
+      if (!window.dataSdk) return;
+      
+      const submitBtn = document.getElementById('res-submit-btn');
+      const successMsg = document.getElementById('res-success');
+      
+      if (submitBtn) submitBtn.disabled = true;
+      
+      const formData = {
+        id: Date.now().toString(),
+        type: 'reservation',
+        name: document.getElementById('res-name').value,
+        email: document.getElementById('res-email').value,
+        message: `Ticket: ${document.getElementById('res-ticket-type').value}, Date: ${document.getElementById('res-date').value}, Qty: ${document.getElementById('res-quantity').value}`,
+        timestamp: new Date().toISOString()
+      };
+      
+      const result = await window.dataSdk.create(formData);
+      
+      if (result.isOk) {
+        if (successMsg) {
+          successMsg.classList.remove('hidden');
+          setTimeout(() => {
+            successMsg.classList.add('hidden');
+            closeModal('reservation-modal');
+            e.target.reset();
+          }, 3000);
+        }
+      } else {
+        showToast('Gagal melakukan pemesanan. Silakan coba lagi.');
+      }
+      
+      if (submitBtn) submitBtn.disabled = false;
+    }
+
+    async function handleRatingForm(e) {
+      e.preventDefault();
+      
+      if (!window.dataSdk) return;
+      
+      const rating = document.getElementById('rating-value').value;
+      if (!rating) {
+        showToast('Silakan pilih rating terlebih dahulu');
+        return;
+      }
+      
+      const submitBtn = document.getElementById('rating-submit-btn');
+      const successMsg = document.getElementById('rating-success');
+      
+      if (submitBtn) submitBtn.disabled = true;
+      
+      const formData = {
+        id: Date.now().toString(),
+        type: 'testimonial',
+        name: document.getElementById('rating-name').value,
+        email: document.getElementById('rating-email').value,
+        message: document.getElementById('rating-message').value,
+        rating: parseInt(rating),
+        timestamp: new Date().toISOString()
+      };
+      
+      const result = await window.dataSdk.create(formData);
+      
+      if (result.isOk) {
+        if (successMsg) {
+          successMsg.classList.remove('hidden');
+          setTimeout(() => {
+            successMsg.classList.add('hidden');
+            closeModal('rating-modal');
+            e.target.reset();
+            document.querySelectorAll('.rating-star').forEach(s => {
+              s.classList.remove('text-yellow-400');
+              s.classList.add('text-gray-300');
+            });
+          }, 3000);
+        }
+      } else {
+        showToast('Gagal mengirim testimoni. Silakan coba lagi.');
+      }
+      
+      if (submitBtn) submitBtn.disabled = false;
+    }
+
+    function renderTestimonials() {
+      const track = document.getElementById('testimonials-track');
+      if (!track) return;
+
+      if (allTestimonials.length === 0) {
+        track.innerHTML = `
+          <div class="w-full text-center py-12">
+            <p class="text-gray-500 dark:text-gray-400">Belum ada testimoni. Jadilah yang pertama!</p>
+          </div>
+        `;
+        return;
+      }
+
+      track.innerHTML = allTestimonials.map(testimonial => `
+        <div class="flex-shrink-0 w-full px-4">
+          <div class="testimonial-card bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center text-2xl mr-4">
+                👤
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 dark:text-white">${testimonial.name}</h4>
+                <div class="flex text-yellow-400">
+                  ${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 italic">"${testimonial.message}"</p>
+            <p class="text-sm text-gray-400 dark:text-gray-500 mt-4">${new Date(testimonial.timestamp).toLocaleDateString('id-ID')}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function changeTestimonial(direction) {
+      if (allTestimonials.length === 0) return;
+      
+      currentTestimonialIndex += direction;
+      if (currentTestimonialIndex < 0) currentTestimonialIndex = allTestimonials.length - 1;
+      if (currentTestimonialIndex >= allTestimonials.length) currentTestimonialIndex = 0;
+      
+      const track = document.getElementById('testimonials-track');
+      if (track) {
+        track.style.transform = `translateX(-${currentTestimonialIndex * 100}%)`;
+      }
+      
+      resetTestimonialInterval();
+    }
+
+    function startTestimonialCarousel() {
+      testimonialInterval = setInterval(() => {
+        changeTestimonial(1);
+      }, 5000);
+    }
+
+    function resetTestimonialInterval() {
+      clearInterval(testimonialInterval);
+      startTestimonialCarousel();
+    }
+
+    function filterAnimals(category) {
+      const cards = document.querySelectorAll('.animal-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function searchContent(query) {
+      const cards = document.querySelectorAll('.animal-card, article');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatbot-input');
+      const messagesContainer = document.getElementById('chatbot-messages');
+      
+      if (!input || !messagesContainer || !input.value.trim()) return;
+      
+      const userMessage = input.value.trim();
+      
+      messagesContainer.innerHTML += `
+        <div class="flex items-start space-x-2 justify-end">
+          <div class="bg-purple-600 text-white rounded-2xl rounded-tr-none p-3 shadow max-w-xs">
+            <p class="text-sm">${userMessage}</p>
+          </div>
+          <div class="text-2xl">👤</div>
+        </div>
+      `;
+      
+      input.value = '';
+      
+      setTimeout(() => {
+        const response = getChatbotResponse(userMessage.toLowerCase());
+        messagesContainer.innerHTML += `
+          <div class="flex items-start space-x-2">
+            <div class="text-2xl">🤖</div>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none p-3 shadow max-w-xs">
+              <p class="text-gray-800 dark:text-white text-sm">${response}</p>
+            </div>
+          </div>
+        `;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 1000);
+      
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function getChatbotResponse(message) {
+      if (message.includes('jam') || message.includes('buka') || message.includes('tutup')) {
+        return 'Kebun Binatang Lembang buka setiap hari pukul 08:00 - 17:00 WIB. Kami tutup hanya pada hari libur nasional tertentu.';
+      } else if (message.includes('tiket') || message.includes('harga') || message.includes('ticket')) {
+        return 'Harga tiket kami: Dewasa Rp 50.000, Anak-anak Rp 30.000, dan Paket Keluarga Rp 150.000. Anda bisa pesan langsung di website ini!';
+      } else if (message.includes('lokasi') || message.includes('alamat') || message.includes('dimana')) {
+        return 'Kami berlokasi di Jl. Raya Lembang No. 123, Lembang, Bandung Barat, Jawa Barat 40391. Klik tombol peta untuk navigasi.';
+      } else if (message.includes('satwa') || message.includes('hewan') || message.includes('animal')) {
+        return 'Kami memiliki 250+ spesies satwa termasuk Singa Afrika, Gajah Sumatera, Jerapah, dan masih banyak lagi. Cek galeri kami untuk melihat koleksi lengkap!';
+      } else if (message.includes('fasilitas') || message.includes('facilities')) {
+        return 'Fasilitas kami meliputi: Restoran, Parkir Luas, Toilet Bersih, Souvenir Shop, Klinik, Photo Spot, Playground, dan WiFi Gratis!';
+      } else {
+        return 'Terima kasih atas pertanyaannya! Tim customer service kami akan segera membantu Anda. Atau Anda bisa hubungi kami di +62 22 2789 1234.';
+      }
+    }
+
+    function quickChatReply(message) {
+      const input = document.getElementById('chatbot-input');
+      if (input) {
+        input.value = message;
+        sendChatMessage();
+      }
+    }
+
+    function openVirtualTour(animal) {
+      const modal = document.getElementById('virtual-tour-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function openReservationForm(ticketType) {
+      const modal = document.getElementById('reservation-modal');
+      const select = document.getElementById('res-ticket-type');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      if (select && ticketType) {
+        select.value = ticketType;
+      }
+    }
+
+    function openRatingForm() {
+      const modal = document.getElementById('rating-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function shareToSocial(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent('Kunjungi Kebun Binatang Lembang - Destinasi Wisata Keluarga Terbaik!');
+      
+      let shareUrl = '';
+      switch(platform) {
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+          break;
+        case 'whatsapp':
+          shareUrl = `https://wa.me/?text=${text}%20${url}`;
+          break;
+      }
+      
+      if (shareUrl) {
+        window.open(shareUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-20 right-6 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9abca650457a7a21',t:'MTc2NTM2ODczOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
